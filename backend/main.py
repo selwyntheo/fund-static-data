@@ -34,7 +34,7 @@ def load_reference_data():
         logger.info(f"Loaded Eagle account reference with {eagle_account_reference.get('total_accounts', 0)} accounts")
         
         # Load ground truth mappings for pattern learning
-        mappings_df = pd.read_csv('../test-data/ground-truth-mappings.csv')
+        mappings_df = pd.read_csv('test-data/ground-truth-mappings.csv')
         ground_truth_mappings = mappings_df.to_dict('records')
         logger.info(f"Loaded {len(ground_truth_mappings)} ground truth mapping patterns")
         
