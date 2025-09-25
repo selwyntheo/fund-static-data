@@ -371,8 +371,12 @@ ESTABLISHED MAPPING PATTERNS (use as reference):
   Type: {mapping['Mapping_Type']} - {mapping['Notes']}"""
 
         # Add uploaded file context if available
+        logger.info(f"Chat request - session_id: {session_id}")
+        logger.info(f"Available session_ids in uploaded_files_data: {list(uploaded_files_data.keys())}")
+        
         if session_id and session_id in uploaded_files_data:
             file_data = uploaded_files_data[session_id]
+            logger.info(f"Found uploaded file data for session {session_id}: {file_data['filename']}")
             system_prompt += f"""
 
 UPLOADED SOURCE FILE CONTEXT:
@@ -389,6 +393,8 @@ You have full access to both the uploaded FIS IO source accounts AND the complet
 4. Explain confidence levels based on account function similarity
 
 When providing mappings, always reference specific Eagle account codes from the target structure above."""
+        else:
+            logger.warning(f"No uploaded file data found for session_id: {session_id}")
 
         if context:
             system_prompt += f"\n\nCurrent mapping context: {json.dumps(context, indent=2)}"
@@ -464,6 +470,7 @@ async def upload_accounts(file: UploadFile = File(...)):
             "columns": list(df.columns),
             "raw_data": df.to_dict('records')[:10]  # Store first 10 rows as sample
         }
+        logger.info(f"File upload: Created session_id {session_id} for file {file.filename}")
         
         return {
             "status": "success",

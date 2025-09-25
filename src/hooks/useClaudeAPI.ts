@@ -55,6 +55,10 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
       session_id: context?.sessionId, // Include session ID if available
     };
 
+    // Debug logging
+    console.log('Claude API Request - session_id:', context?.sessionId);
+    console.log('Claude API Request - context:', context);
+
     try {
       const response = await axios.post(
         `${BACKEND_API_URL}/chat`,
