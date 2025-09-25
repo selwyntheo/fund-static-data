@@ -1,0 +1,14 @@
+Account_Code,Account_Description,Account_Type
+1000,Cash and Cash Equivalents,Asset
+1200,Accounts Receivable,Asset
+1300,Prepaid Expenses,Asset
+1500,Property Plant and Equipment,Asset
+2000,Accounts Payable,Liability
+2100,Accrued Expenses,Liability
+3000,Common Stock,Equity
+3100,Retained Earnings,Equity
+4000,Revenue,Revenue
+4010,Service Revenue,Revenue
+6000,Operating Expenses,Expense
+6010,Salaries and Wages,Expense
+6200,Depreciation Expense,Expense

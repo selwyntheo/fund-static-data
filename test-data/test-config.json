@@ -1,0 +1,82 @@
+{
+  "testConfig": {
+    "name": "FIS IO to BNY Eagle Account Mapping Test Suite",
+    "version": "1.0.0",
+    "description": "Comprehensive test suite for evaluating AI-powered account mapping effectiveness",
+    "created": "2024-09-25"
+  },
+  "dataSets": {
+    "source": {
+      "system": "FIS IO",
+      "file": "fis-io-ledger-accounts.csv",
+      "records": 64,
+      "accountCodeField": "Account_Code",
+      "descriptionField": "Account_Description",
+      "typeField": "Account_Type"
+    },
+    "target": {
+      "system": "BNY Eagle",
+      "file": "bny-eagle-ledger-accounts.csv",
+      "records": 66,
+      "accountCodeField": "GL_Account",
+      "descriptionField": "GL_Description",
+      "typeField": "Account_Class"
+    },
+    "groundTruth": {
+      "file": "ground-truth-mappings.csv",
+      "records": 64,
+      "sourceCodeField": "Source_Account_Code",
+      "targetCodeField": "Target_Account_Code",
+      "confidenceField": "Mapping_Confidence"
+    }
+  },
+  "evaluationMetrics": {
+    "accuracy": {
+      "exactMatchWeight": 1.0,
+      "semanticMatchWeight": 0.9,
+      "categoryMatchWeight": 0.7,
+      "confidenceThreshold": 80
+    },
+    "confidence": {
+      "calibrationMetric": "correlation",
+      "overconfidencePenalty": 0.1,
+      "underconfidencePenalty": 0.05
+    },
+    "performance": {
+      "maxProcessingTimePerAccount": 2.0,
+      "maxTotalProcessingTime": 120.0,
+      "memoryUsageLimit": "500MB"
+    }
+  },
+  "testScenarios": [
+    {
+      "name": "High Confidence Direct Matches",
+      "accounts": ["1000", "1010", "1020", "2000", "3100", "4010"],
+      "expectedAccuracy": 0.95,
+      "expectedConfidence": 0.90
+    },
+    {
+      "name": "Medium Confidence Semantic Matches",
+      "accounts": ["1300", "4030", "6110", "6130"],
+      "expectedAccuracy": 0.85,
+      "expectedConfidence": 0.75
+    },
+    {
+      "name": "Low Confidence Complex Mappings",
+      "accounts": ["1500", "2100", "6000"],
+      "expectedAccuracy": 0.70,
+      "expectedConfidence": 0.60
+    }
+  ],
+  "promptTemplates": {
+    "basic": "Map the following account from FIS IO to BNY Eagle: {source_account} - {source_description}",
+    "contextual": "You are mapping accounts from FIS IO system to BNY Eagle system. Consider the account type, business function, and financial statement classification. Map: {source_account} - {source_description}",
+    "detailed": "As an expert accountant, map this FIS IO account to the most appropriate BNY Eagle account. Provide confidence score and reasoning. Source: {source_account} - {source_description}. Available targets: {target_list}"
+  },
+  "successCriteria": {
+    "minimumAccuracy": 0.85,
+    "minimumHighConfidenceAccuracy": 0.95,
+    "minimumConsistencyScore": 3.5,
+    "maximumProcessingTime": 2.0
+  }
+}

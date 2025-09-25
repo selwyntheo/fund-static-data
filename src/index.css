@@ -1,0 +1,47 @@
+/* ag-grid theme customization */
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ag-theme-alpine {
+  --ag-header-height: 48px;
+  --ag-row-height: 40px;
+  --ag-font-size: 14px;
+}
+
+/* Custom confidence color classes */
+.confidence-high {
+  @apply bg-confidence-high/10 text-confidence-high;
+}
+
+.confidence-medium {
+  @apply bg-confidence-medium/10 text-confidence-medium;
+}
+
+.confidence-low {
+  @apply bg-confidence-low/10 text-confidence-low;
+}
+
+.confidence-verylow {
+  @apply bg-confidence-verylow/10 text-confidence-verylow;
+}
+
+/* Status badge styles */
+.status-mapped {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-unmapped {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-rejected {
+  @apply bg-red-100 text-red-800;
+}

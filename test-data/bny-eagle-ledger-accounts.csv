@@ -1,0 +1,70 @@
+GL_Account,GL_Description,Account_Class,Sub_Class,Financial_Statement,Normal_Balance,Status,Department,Cost_Center
+101000,Cash - Operating Account,Asset,Cash and Equivalents,Balance Sheet,Debit,Active,Treasury,TC001
+101100,Cash - Payroll Account,Asset,Cash and Equivalents,Balance Sheet,Debit,Active,HR,HR001
+101200,Petty Cash,Asset,Cash and Equivalents,Balance Sheet,Debit,Active,Admin,AD001
+102000,Short Term Investments,Asset,Marketable Securities,Balance Sheet,Debit,Active,Treasury,TC001
+102100,Money Market Securities,Asset,Marketable Securities,Balance Sheet,Debit,Active,Treasury,TC001
+103000,Accounts Receivable - Trade,Asset,Receivables,Balance Sheet,Debit,Active,Sales,SL001
+103100,Accounts Receivable - Other,Asset,Receivables,Balance Sheet,Debit,Active,Admin,AD001
+103200,Employee Receivables,Asset,Receivables,Balance Sheet,Debit,Active,HR,HR001
+104000,Prepaid Insurance,Asset,Prepaid Assets,Balance Sheet,Debit,Active,Admin,AD001
+104100,Prepaid Software Subscriptions,Asset,Prepaid Assets,Balance Sheet,Debit,Active,IT,IT001
+104200,Other Prepaid Expenses,Asset,Prepaid Assets,Balance Sheet,Debit,Active,Admin,AD001
+105000,Merchandise Inventory,Asset,Inventory,Balance Sheet,Debit,Active,Operations,OP001
+150000,Computer Hardware,Asset,Fixed Assets,Balance Sheet,Debit,Active,IT,IT001
+150100,Office Equipment,Asset,Fixed Assets,Balance Sheet,Debit,Active,Admin,AD001
+150200,Furniture and Fixtures,Asset,Fixed Assets,Balance Sheet,Debit,Active,Admin,AD001
+150300,Building Improvements,Asset,Fixed Assets,Balance Sheet,Debit,Active,Facilities,FC001
+160000,Accumulated Depreciation - Hardware,Asset,Accumulated Depreciation,Balance Sheet,Credit,Active,IT,IT001
+160100,Accumulated Depreciation - Equipment,Asset,Accumulated Depreciation,Balance Sheet,Credit,Active,Admin,AD001
+160200,Accumulated Depreciation - Furniture,Asset,Accumulated Depreciation,Balance Sheet,Credit,Active,Admin,AD001
+170000,Software Assets,Asset,Intangible Assets,Balance Sheet,Debit,Active,IT,IT001
+170100,Intellectual Property,Asset,Intangible Assets,Balance Sheet,Debit,Active,Legal,LG001
+170200,Goodwill,Asset,Intangible Assets,Balance Sheet,Debit,Active,Admin,AD001
+201000,Accounts Payable - Trade,Liability,Payables,Balance Sheet,Credit,Active,Procurement,PR001
+201100,Accounts Payable - Other,Liability,Payables,Balance Sheet,Credit,Active,Admin,AD001
+202000,Wages Payable,Liability,Accrued Liabilities,Balance Sheet,Credit,Active,HR,HR001
+202100,Benefits Payable,Liability,Accrued Liabilities,Balance Sheet,Credit,Active,HR,HR001
+202200,Professional Fees Payable,Liability,Accrued Liabilities,Balance Sheet,Credit,Active,Admin,AD001
+203000,Credit Line Payable,Liability,Short Term Debt,Balance Sheet,Credit,Active,Treasury,TC001
+204000,Customer Deposits,Liability,Deferred Revenue,Balance Sheet,Credit,Active,Sales,SL001
+204100,Unearned Revenue,Liability,Deferred Revenue,Balance Sheet,Credit,Active,Sales,SL001
+205000,Federal Tax Withholding,Liability,Tax Liabilities,Balance Sheet,Credit,Active,HR,HR001
+205100,State Tax Withholding,Liability,Tax Liabilities,Balance Sheet,Credit,Active,HR,HR001
+205200,FICA Tax Payable,Liability,Tax Liabilities,Balance Sheet,Credit,Active,HR,HR001
+205300,Income Tax Payable,Liability,Tax Liabilities,Balance Sheet,Credit,Active,Tax,TX001
+250000,Long Term Bank Loan,Liability,Long Term Debt,Balance Sheet,Credit,Active,Treasury,TC001
+250100,Equipment Finance Agreement,Liability,Long Term Debt,Balance Sheet,Credit,Active,Treasury,TC001
+301000,Capital Stock,Equity,Paid-in Capital,Balance Sheet,Credit,Active,Admin,AD001
+302000,Retained Earnings,Equity,Retained Earnings,Balance Sheet,Credit,Active,Admin,AD001
+303000,Additional Paid-in Capital,Equity,Paid-in Capital,Balance Sheet,Credit,Active,Admin,AD001
+401000,Product Sales Revenue,Revenue,Sales Revenue,Income Statement,Credit,Active,Sales,SL001
+401100,Service Revenue,Revenue,Sales Revenue,Income Statement,Credit,Active,Sales,SL001
+401200,Consulting Revenue,Revenue,Sales Revenue,Income Statement,Credit,Active,Consulting,CS001
+401300,Recurring Revenue,Revenue,Sales Revenue,Income Statement,Credit,Active,Sales,SL001
+402000,Interest Revenue,Revenue,Other Revenue,Income Statement,Credit,Active,Treasury,TC001
+402100,Investment Income,Revenue,Other Revenue,Income Statement,Credit,Active,Treasury,TC001
+402200,Miscellaneous Revenue,Revenue,Other Revenue,Income Statement,Credit,Active,Admin,AD001
+501000,Material Costs,Expense,Cost of Sales,Income Statement,Debit,Active,Operations,OP001
+501100,Direct Labor Costs,Expense,Cost of Sales,Income Statement,Debit,Active,Operations,OP001
+501200,Overhead Allocation,Expense,Cost of Sales,Income Statement,Debit,Active,Operations,OP001
+601000,Executive Salaries,Expense,Personnel Costs,Income Statement,Debit,Active,Executive,EX001
+601100,Administrative Salaries,Expense,Personnel Costs,Income Statement,Debit,Active,Admin,AD001
+601200,Sales Salaries,Expense,Personnel Costs,Income Statement,Debit,Active,Sales,SL001
+601300,Employee Benefits Cost,Expense,Personnel Costs,Income Statement,Debit,Active,HR,HR001
+601400,Payroll Tax Expense,Expense,Personnel Costs,Income Statement,Debit,Active,HR,HR001
+602000,Facility Rent,Expense,Facility Costs,Income Statement,Debit,Active,Facilities,FC001
+602100,Utilities Expense,Expense,Facility Costs,Income Statement,Debit,Active,Facilities,FC001
+602200,Office Supplies,Expense,Administrative Costs,Income Statement,Debit,Active,Admin,AD001
+602300,Professional Fees,Expense,Administrative Costs,Income Statement,Debit,Active,Admin,AD001
+602400,Legal Fees,Expense,Administrative Costs,Income Statement,Debit,Active,Legal,LG001
+602500,Audit Fees,Expense,Administrative Costs,Income Statement,Debit,Active,Finance,FN001
+602600,Insurance Premiums,Expense,Administrative Costs,Income Statement,Debit,Active,Admin,AD001
+603000,Advertising Expense,Expense,Marketing Costs,Income Statement,Debit,Active,Marketing,MK001
+603100,Software Subscriptions,Expense,Technology Costs,Income Statement,Debit,Active,IT,IT001
+603200,Communication Costs,Expense,Technology Costs,Income Statement,Debit,Active,IT,IT001
+603300,Travel Expenses,Expense,Administrative Costs,Income Statement,Debit,Active,Admin,AD001
+603400,Training Expenses,Expense,Personnel Costs,Income Statement,Debit,Active,HR,HR001
+604000,Depreciation Expense,Expense,Non-Cash Expenses,Income Statement,Debit,Active,Finance,FN001
+605000,Interest Expense,Expense,Financial Costs,Income Statement,Debit,Active,Treasury,TC001
+606000,Income Tax Expense,Expense,Tax Expense,Income Statement,Debit,Active,Tax,TX001

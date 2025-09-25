@@ -1,0 +1,2405 @@
+{
+  "system_name": "BNY Eagle",
+  "total_accounts": 69,
+  "account_structure": {
+    "code_format": "6-digit numeric (e.g., 101000)",
+    "hierarchy": "Account Class > Sub Class > Individual Accounts",
+    "departments": [
+      "Operations",
+      "Admin",
+      "HR",
+      "Marketing",
+      "Treasury",
+      "Procurement",
+      "Finance",
+      "Tax",
+      "Sales",
+      "Consulting",
+      "Legal",
+      "Facilities",
+      "IT",
+      "Executive"
+    ],
+    "cost_centers": [
+      "LG001",
+      "PR001",
+      "FN001",
+      "CS001",
+      "SL001",
+      "HR001",
+      "OP001",
+      "TX001",
+      "TC001",
+      "EX001",
+      "IT001",
+      "MK001",
+      "AD001",
+      "FC001"
+    ]
+  },
+  "account_classes": {
+    "Asset": {
+      "sub_classes": {
+        "Cash and Equivalents": [
+          {
+            "account_code": "101000",
+            "description": "Cash - Operating Account",
+            "account_class": "Asset",
+            "sub_class": "Cash and Equivalents",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          },
+          {
+            "account_code": "101100",
+            "description": "Cash - Payroll Account",
+            "account_class": "Asset",
+            "sub_class": "Cash and Equivalents",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "101200",
+            "description": "Petty Cash",
+            "account_class": "Asset",
+            "sub_class": "Cash and Equivalents",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Marketable Securities": [
+          {
+            "account_code": "102000",
+            "description": "Short Term Investments",
+            "account_class": "Asset",
+            "sub_class": "Marketable Securities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          },
+          {
+            "account_code": "102100",
+            "description": "Money Market Securities",
+            "account_class": "Asset",
+            "sub_class": "Marketable Securities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          }
+        ],
+        "Receivables": [
+          {
+            "account_code": "103000",
+            "description": "Accounts Receivable - Trade",
+            "account_class": "Asset",
+            "sub_class": "Receivables",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          },
+          {
+            "account_code": "103100",
+            "description": "Accounts Receivable - Other",
+            "account_class": "Asset",
+            "sub_class": "Receivables",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "103200",
+            "description": "Employee Receivables",
+            "account_class": "Asset",
+            "sub_class": "Receivables",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          }
+        ],
+        "Prepaid Assets": [
+          {
+            "account_code": "104000",
+            "description": "Prepaid Insurance",
+            "account_class": "Asset",
+            "sub_class": "Prepaid Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "104100",
+            "description": "Prepaid Software Subscriptions",
+            "account_class": "Asset",
+            "sub_class": "Prepaid Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "IT",
+            "cost_center": "IT001"
+          },
+          {
+            "account_code": "104200",
+            "description": "Other Prepaid Expenses",
+            "account_class": "Asset",
+            "sub_class": "Prepaid Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Inventory": [
+          {
+            "account_code": "105000",
+            "description": "Merchandise Inventory",
+            "account_class": "Asset",
+            "sub_class": "Inventory",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Operations",
+            "cost_center": "OP001"
+          }
+        ],
+        "Fixed Assets": [
+          {
+            "account_code": "150000",
+            "description": "Computer Hardware",
+            "account_class": "Asset",
+            "sub_class": "Fixed Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "IT",
+            "cost_center": "IT001"
+          },
+          {
+            "account_code": "150100",
+            "description": "Office Equipment",
+            "account_class": "Asset",
+            "sub_class": "Fixed Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "150200",
+            "description": "Furniture and Fixtures",
+            "account_class": "Asset",
+            "sub_class": "Fixed Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "150300",
+            "description": "Building Improvements",
+            "account_class": "Asset",
+            "sub_class": "Fixed Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Facilities",
+            "cost_center": "FC001"
+          }
+        ],
+        "Accumulated Depreciation": [
+          {
+            "account_code": "160000",
+            "description": "Accumulated Depreciation - Hardware",
+            "account_class": "Asset",
+            "sub_class": "Accumulated Depreciation",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "IT",
+            "cost_center": "IT001"
+          },
+          {
+            "account_code": "160100",
+            "description": "Accumulated Depreciation - Equipment",
+            "account_class": "Asset",
+            "sub_class": "Accumulated Depreciation",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "160200",
+            "description": "Accumulated Depreciation - Furniture",
+            "account_class": "Asset",
+            "sub_class": "Accumulated Depreciation",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Intangible Assets": [
+          {
+            "account_code": "170000",
+            "description": "Software Assets",
+            "account_class": "Asset",
+            "sub_class": "Intangible Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "IT",
+            "cost_center": "IT001"
+          },
+          {
+            "account_code": "170100",
+            "description": "Intellectual Property",
+            "account_class": "Asset",
+            "sub_class": "Intangible Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Legal",
+            "cost_center": "LG001"
+          },
+          {
+            "account_code": "170200",
+            "description": "Goodwill",
+            "account_class": "Asset",
+            "sub_class": "Intangible Assets",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ]
+      },
+      "accounts": [
+        {
+          "account_code": "101000",
+          "description": "Cash - Operating Account",
+          "account_class": "Asset",
+          "sub_class": "Cash and Equivalents",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "101100",
+          "description": "Cash - Payroll Account",
+          "account_class": "Asset",
+          "sub_class": "Cash and Equivalents",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "101200",
+          "description": "Petty Cash",
+          "account_class": "Asset",
+          "sub_class": "Cash and Equivalents",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "102000",
+          "description": "Short Term Investments",
+          "account_class": "Asset",
+          "sub_class": "Marketable Securities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "102100",
+          "description": "Money Market Securities",
+          "account_class": "Asset",
+          "sub_class": "Marketable Securities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "103000",
+          "description": "Accounts Receivable - Trade",
+          "account_class": "Asset",
+          "sub_class": "Receivables",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "103100",
+          "description": "Accounts Receivable - Other",
+          "account_class": "Asset",
+          "sub_class": "Receivables",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "103200",
+          "description": "Employee Receivables",
+          "account_class": "Asset",
+          "sub_class": "Receivables",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "104000",
+          "description": "Prepaid Insurance",
+          "account_class": "Asset",
+          "sub_class": "Prepaid Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "104100",
+          "description": "Prepaid Software Subscriptions",
+          "account_class": "Asset",
+          "sub_class": "Prepaid Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "IT",
+          "cost_center": "IT001"
+        },
+        {
+          "account_code": "104200",
+          "description": "Other Prepaid Expenses",
+          "account_class": "Asset",
+          "sub_class": "Prepaid Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "105000",
+          "description": "Merchandise Inventory",
+          "account_class": "Asset",
+          "sub_class": "Inventory",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Operations",
+          "cost_center": "OP001"
+        },
+        {
+          "account_code": "150000",
+          "description": "Computer Hardware",
+          "account_class": "Asset",
+          "sub_class": "Fixed Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "IT",
+          "cost_center": "IT001"
+        },
+        {
+          "account_code": "150100",
+          "description": "Office Equipment",
+          "account_class": "Asset",
+          "sub_class": "Fixed Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "150200",
+          "description": "Furniture and Fixtures",
+          "account_class": "Asset",
+          "sub_class": "Fixed Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "150300",
+          "description": "Building Improvements",
+          "account_class": "Asset",
+          "sub_class": "Fixed Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Facilities",
+          "cost_center": "FC001"
+        },
+        {
+          "account_code": "160000",
+          "description": "Accumulated Depreciation - Hardware",
+          "account_class": "Asset",
+          "sub_class": "Accumulated Depreciation",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "IT",
+          "cost_center": "IT001"
+        },
+        {
+          "account_code": "160100",
+          "description": "Accumulated Depreciation - Equipment",
+          "account_class": "Asset",
+          "sub_class": "Accumulated Depreciation",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "160200",
+          "description": "Accumulated Depreciation - Furniture",
+          "account_class": "Asset",
+          "sub_class": "Accumulated Depreciation",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "170000",
+          "description": "Software Assets",
+          "account_class": "Asset",
+          "sub_class": "Intangible Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "IT",
+          "cost_center": "IT001"
+        },
+        {
+          "account_code": "170100",
+          "description": "Intellectual Property",
+          "account_class": "Asset",
+          "sub_class": "Intangible Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Legal",
+          "cost_center": "LG001"
+        },
+        {
+          "account_code": "170200",
+          "description": "Goodwill",
+          "account_class": "Asset",
+          "sub_class": "Intangible Assets",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        }
+      ]
+    },
+    "Liability": {
+      "sub_classes": {
+        "Payables": [
+          {
+            "account_code": "201000",
+            "description": "Accounts Payable - Trade",
+            "account_class": "Liability",
+            "sub_class": "Payables",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Procurement",
+            "cost_center": "PR001"
+          },
+          {
+            "account_code": "201100",
+            "description": "Accounts Payable - Other",
+            "account_class": "Liability",
+            "sub_class": "Payables",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Accrued Liabilities": [
+          {
+            "account_code": "202000",
+            "description": "Wages Payable",
+            "account_class": "Liability",
+            "sub_class": "Accrued Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "202100",
+            "description": "Benefits Payable",
+            "account_class": "Liability",
+            "sub_class": "Accrued Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "202200",
+            "description": "Professional Fees Payable",
+            "account_class": "Liability",
+            "sub_class": "Accrued Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Short Term Debt": [
+          {
+            "account_code": "203000",
+            "description": "Credit Line Payable",
+            "account_class": "Liability",
+            "sub_class": "Short Term Debt",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          }
+        ],
+        "Deferred Revenue": [
+          {
+            "account_code": "204000",
+            "description": "Customer Deposits",
+            "account_class": "Liability",
+            "sub_class": "Deferred Revenue",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          },
+          {
+            "account_code": "204100",
+            "description": "Unearned Revenue",
+            "account_class": "Liability",
+            "sub_class": "Deferred Revenue",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          }
+        ],
+        "Tax Liabilities": [
+          {
+            "account_code": "205000",
+            "description": "Federal Tax Withholding",
+            "account_class": "Liability",
+            "sub_class": "Tax Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "205100",
+            "description": "State Tax Withholding",
+            "account_class": "Liability",
+            "sub_class": "Tax Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "205200",
+            "description": "FICA Tax Payable",
+            "account_class": "Liability",
+            "sub_class": "Tax Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "205300",
+            "description": "Income Tax Payable",
+            "account_class": "Liability",
+            "sub_class": "Tax Liabilities",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Tax",
+            "cost_center": "TX001"
+          }
+        ],
+        "Long Term Debt": [
+          {
+            "account_code": "250000",
+            "description": "Long Term Bank Loan",
+            "account_class": "Liability",
+            "sub_class": "Long Term Debt",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          },
+          {
+            "account_code": "250100",
+            "description": "Equipment Finance Agreement",
+            "account_class": "Liability",
+            "sub_class": "Long Term Debt",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          }
+        ]
+      },
+      "accounts": [
+        {
+          "account_code": "201000",
+          "description": "Accounts Payable - Trade",
+          "account_class": "Liability",
+          "sub_class": "Payables",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Procurement",
+          "cost_center": "PR001"
+        },
+        {
+          "account_code": "201100",
+          "description": "Accounts Payable - Other",
+          "account_class": "Liability",
+          "sub_class": "Payables",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "202000",
+          "description": "Wages Payable",
+          "account_class": "Liability",
+          "sub_class": "Accrued Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "202100",
+          "description": "Benefits Payable",
+          "account_class": "Liability",
+          "sub_class": "Accrued Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "202200",
+          "description": "Professional Fees Payable",
+          "account_class": "Liability",
+          "sub_class": "Accrued Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "203000",
+          "description": "Credit Line Payable",
+          "account_class": "Liability",
+          "sub_class": "Short Term Debt",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "204000",
+          "description": "Customer Deposits",
+          "account_class": "Liability",
+          "sub_class": "Deferred Revenue",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "204100",
+          "description": "Unearned Revenue",
+          "account_class": "Liability",
+          "sub_class": "Deferred Revenue",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "205000",
+          "description": "Federal Tax Withholding",
+          "account_class": "Liability",
+          "sub_class": "Tax Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "205100",
+          "description": "State Tax Withholding",
+          "account_class": "Liability",
+          "sub_class": "Tax Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "205200",
+          "description": "FICA Tax Payable",
+          "account_class": "Liability",
+          "sub_class": "Tax Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "205300",
+          "description": "Income Tax Payable",
+          "account_class": "Liability",
+          "sub_class": "Tax Liabilities",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Tax",
+          "cost_center": "TX001"
+        },
+        {
+          "account_code": "250000",
+          "description": "Long Term Bank Loan",
+          "account_class": "Liability",
+          "sub_class": "Long Term Debt",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "250100",
+          "description": "Equipment Finance Agreement",
+          "account_class": "Liability",
+          "sub_class": "Long Term Debt",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        }
+      ]
+    },
+    "Equity": {
+      "sub_classes": {
+        "Paid-in Capital": [
+          {
+            "account_code": "301000",
+            "description": "Capital Stock",
+            "account_class": "Equity",
+            "sub_class": "Paid-in Capital",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "303000",
+            "description": "Additional Paid-in Capital",
+            "account_class": "Equity",
+            "sub_class": "Paid-in Capital",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Retained Earnings": [
+          {
+            "account_code": "302000",
+            "description": "Retained Earnings",
+            "account_class": "Equity",
+            "sub_class": "Retained Earnings",
+            "financial_statement": "Balance Sheet",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ]
+      },
+      "accounts": [
+        {
+          "account_code": "301000",
+          "description": "Capital Stock",
+          "account_class": "Equity",
+          "sub_class": "Paid-in Capital",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "302000",
+          "description": "Retained Earnings",
+          "account_class": "Equity",
+          "sub_class": "Retained Earnings",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "303000",
+          "description": "Additional Paid-in Capital",
+          "account_class": "Equity",
+          "sub_class": "Paid-in Capital",
+          "financial_statement": "Balance Sheet",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        }
+      ]
+    },
+    "Revenue": {
+      "sub_classes": {
+        "Sales Revenue": [
+          {
+            "account_code": "401000",
+            "description": "Product Sales Revenue",
+            "account_class": "Revenue",
+            "sub_class": "Sales Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          },
+          {
+            "account_code": "401100",
+            "description": "Service Revenue",
+            "account_class": "Revenue",
+            "sub_class": "Sales Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          },
+          {
+            "account_code": "401200",
+            "description": "Consulting Revenue",
+            "account_class": "Revenue",
+            "sub_class": "Sales Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Consulting",
+            "cost_center": "CS001"
+          },
+          {
+            "account_code": "401300",
+            "description": "Recurring Revenue",
+            "account_class": "Revenue",
+            "sub_class": "Sales Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          }
+        ],
+        "Other Revenue": [
+          {
+            "account_code": "402000",
+            "description": "Interest Revenue",
+            "account_class": "Revenue",
+            "sub_class": "Other Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          },
+          {
+            "account_code": "402100",
+            "description": "Investment Income",
+            "account_class": "Revenue",
+            "sub_class": "Other Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          },
+          {
+            "account_code": "402200",
+            "description": "Miscellaneous Revenue",
+            "account_class": "Revenue",
+            "sub_class": "Other Revenue",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Credit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ]
+      },
+      "accounts": [
+        {
+          "account_code": "401000",
+          "description": "Product Sales Revenue",
+          "account_class": "Revenue",
+          "sub_class": "Sales Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "401100",
+          "description": "Service Revenue",
+          "account_class": "Revenue",
+          "sub_class": "Sales Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "401200",
+          "description": "Consulting Revenue",
+          "account_class": "Revenue",
+          "sub_class": "Sales Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Consulting",
+          "cost_center": "CS001"
+        },
+        {
+          "account_code": "401300",
+          "description": "Recurring Revenue",
+          "account_class": "Revenue",
+          "sub_class": "Sales Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "402000",
+          "description": "Interest Revenue",
+          "account_class": "Revenue",
+          "sub_class": "Other Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "402100",
+          "description": "Investment Income",
+          "account_class": "Revenue",
+          "sub_class": "Other Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "402200",
+          "description": "Miscellaneous Revenue",
+          "account_class": "Revenue",
+          "sub_class": "Other Revenue",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Credit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        }
+      ]
+    },
+    "Expense": {
+      "sub_classes": {
+        "Cost of Sales": [
+          {
+            "account_code": "501000",
+            "description": "Material Costs",
+            "account_class": "Expense",
+            "sub_class": "Cost of Sales",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Operations",
+            "cost_center": "OP001"
+          },
+          {
+            "account_code": "501100",
+            "description": "Direct Labor Costs",
+            "account_class": "Expense",
+            "sub_class": "Cost of Sales",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Operations",
+            "cost_center": "OP001"
+          },
+          {
+            "account_code": "501200",
+            "description": "Overhead Allocation",
+            "account_class": "Expense",
+            "sub_class": "Cost of Sales",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Operations",
+            "cost_center": "OP001"
+          }
+        ],
+        "Personnel Costs": [
+          {
+            "account_code": "601000",
+            "description": "Executive Salaries",
+            "account_class": "Expense",
+            "sub_class": "Personnel Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Executive",
+            "cost_center": "EX001"
+          },
+          {
+            "account_code": "601100",
+            "description": "Administrative Salaries",
+            "account_class": "Expense",
+            "sub_class": "Personnel Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "601200",
+            "description": "Sales Salaries",
+            "account_class": "Expense",
+            "sub_class": "Personnel Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Sales",
+            "cost_center": "SL001"
+          },
+          {
+            "account_code": "601300",
+            "description": "Employee Benefits Cost",
+            "account_class": "Expense",
+            "sub_class": "Personnel Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "601400",
+            "description": "Payroll Tax Expense",
+            "account_class": "Expense",
+            "sub_class": "Personnel Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          },
+          {
+            "account_code": "603400",
+            "description": "Training Expenses",
+            "account_class": "Expense",
+            "sub_class": "Personnel Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "HR",
+            "cost_center": "HR001"
+          }
+        ],
+        "Facility Costs": [
+          {
+            "account_code": "602000",
+            "description": "Facility Rent",
+            "account_class": "Expense",
+            "sub_class": "Facility Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Facilities",
+            "cost_center": "FC001"
+          },
+          {
+            "account_code": "602100",
+            "description": "Utilities Expense",
+            "account_class": "Expense",
+            "sub_class": "Facility Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Facilities",
+            "cost_center": "FC001"
+          }
+        ],
+        "Administrative Costs": [
+          {
+            "account_code": "602200",
+            "description": "Office Supplies",
+            "account_class": "Expense",
+            "sub_class": "Administrative Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "602300",
+            "description": "Professional Fees",
+            "account_class": "Expense",
+            "sub_class": "Administrative Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "602400",
+            "description": "Legal Fees",
+            "account_class": "Expense",
+            "sub_class": "Administrative Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Legal",
+            "cost_center": "LG001"
+          },
+          {
+            "account_code": "602500",
+            "description": "Audit Fees",
+            "account_class": "Expense",
+            "sub_class": "Administrative Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Finance",
+            "cost_center": "FN001"
+          },
+          {
+            "account_code": "602600",
+            "description": "Insurance Premiums",
+            "account_class": "Expense",
+            "sub_class": "Administrative Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          },
+          {
+            "account_code": "603300",
+            "description": "Travel Expenses",
+            "account_class": "Expense",
+            "sub_class": "Administrative Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Admin",
+            "cost_center": "AD001"
+          }
+        ],
+        "Marketing Costs": [
+          {
+            "account_code": "603000",
+            "description": "Advertising Expense",
+            "account_class": "Expense",
+            "sub_class": "Marketing Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Marketing",
+            "cost_center": "MK001"
+          }
+        ],
+        "Technology Costs": [
+          {
+            "account_code": "603100",
+            "description": "Software Subscriptions",
+            "account_class": "Expense",
+            "sub_class": "Technology Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "IT",
+            "cost_center": "IT001"
+          },
+          {
+            "account_code": "603200",
+            "description": "Communication Costs",
+            "account_class": "Expense",
+            "sub_class": "Technology Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "IT",
+            "cost_center": "IT001"
+          }
+        ],
+        "Non-Cash Expenses": [
+          {
+            "account_code": "604000",
+            "description": "Depreciation Expense",
+            "account_class": "Expense",
+            "sub_class": "Non-Cash Expenses",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Finance",
+            "cost_center": "FN001"
+          }
+        ],
+        "Financial Costs": [
+          {
+            "account_code": "605000",
+            "description": "Interest Expense",
+            "account_class": "Expense",
+            "sub_class": "Financial Costs",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Treasury",
+            "cost_center": "TC001"
+          }
+        ],
+        "Tax Expense": [
+          {
+            "account_code": "606000",
+            "description": "Income Tax Expense",
+            "account_class": "Expense",
+            "sub_class": "Tax Expense",
+            "financial_statement": "Income Statement",
+            "normal_balance": "Debit",
+            "status": "Active",
+            "department": "Tax",
+            "cost_center": "TX001"
+          }
+        ]
+      },
+      "accounts": [
+        {
+          "account_code": "501000",
+          "description": "Material Costs",
+          "account_class": "Expense",
+          "sub_class": "Cost of Sales",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Operations",
+          "cost_center": "OP001"
+        },
+        {
+          "account_code": "501100",
+          "description": "Direct Labor Costs",
+          "account_class": "Expense",
+          "sub_class": "Cost of Sales",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Operations",
+          "cost_center": "OP001"
+        },
+        {
+          "account_code": "501200",
+          "description": "Overhead Allocation",
+          "account_class": "Expense",
+          "sub_class": "Cost of Sales",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Operations",
+          "cost_center": "OP001"
+        },
+        {
+          "account_code": "601000",
+          "description": "Executive Salaries",
+          "account_class": "Expense",
+          "sub_class": "Personnel Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Executive",
+          "cost_center": "EX001"
+        },
+        {
+          "account_code": "601100",
+          "description": "Administrative Salaries",
+          "account_class": "Expense",
+          "sub_class": "Personnel Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "601200",
+          "description": "Sales Salaries",
+          "account_class": "Expense",
+          "sub_class": "Personnel Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Sales",
+          "cost_center": "SL001"
+        },
+        {
+          "account_code": "601300",
+          "description": "Employee Benefits Cost",
+          "account_class": "Expense",
+          "sub_class": "Personnel Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "601400",
+          "description": "Payroll Tax Expense",
+          "account_class": "Expense",
+          "sub_class": "Personnel Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "602000",
+          "description": "Facility Rent",
+          "account_class": "Expense",
+          "sub_class": "Facility Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Facilities",
+          "cost_center": "FC001"
+        },
+        {
+          "account_code": "602100",
+          "description": "Utilities Expense",
+          "account_class": "Expense",
+          "sub_class": "Facility Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Facilities",
+          "cost_center": "FC001"
+        },
+        {
+          "account_code": "602200",
+          "description": "Office Supplies",
+          "account_class": "Expense",
+          "sub_class": "Administrative Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "602300",
+          "description": "Professional Fees",
+          "account_class": "Expense",
+          "sub_class": "Administrative Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "602400",
+          "description": "Legal Fees",
+          "account_class": "Expense",
+          "sub_class": "Administrative Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Legal",
+          "cost_center": "LG001"
+        },
+        {
+          "account_code": "602500",
+          "description": "Audit Fees",
+          "account_class": "Expense",
+          "sub_class": "Administrative Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Finance",
+          "cost_center": "FN001"
+        },
+        {
+          "account_code": "602600",
+          "description": "Insurance Premiums",
+          "account_class": "Expense",
+          "sub_class": "Administrative Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "603000",
+          "description": "Advertising Expense",
+          "account_class": "Expense",
+          "sub_class": "Marketing Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Marketing",
+          "cost_center": "MK001"
+        },
+        {
+          "account_code": "603100",
+          "description": "Software Subscriptions",
+          "account_class": "Expense",
+          "sub_class": "Technology Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "IT",
+          "cost_center": "IT001"
+        },
+        {
+          "account_code": "603200",
+          "description": "Communication Costs",
+          "account_class": "Expense",
+          "sub_class": "Technology Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "IT",
+          "cost_center": "IT001"
+        },
+        {
+          "account_code": "603300",
+          "description": "Travel Expenses",
+          "account_class": "Expense",
+          "sub_class": "Administrative Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Admin",
+          "cost_center": "AD001"
+        },
+        {
+          "account_code": "603400",
+          "description": "Training Expenses",
+          "account_class": "Expense",
+          "sub_class": "Personnel Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "HR",
+          "cost_center": "HR001"
+        },
+        {
+          "account_code": "604000",
+          "description": "Depreciation Expense",
+          "account_class": "Expense",
+          "sub_class": "Non-Cash Expenses",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Finance",
+          "cost_center": "FN001"
+        },
+        {
+          "account_code": "605000",
+          "description": "Interest Expense",
+          "account_class": "Expense",
+          "sub_class": "Financial Costs",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Treasury",
+          "cost_center": "TC001"
+        },
+        {
+          "account_code": "606000",
+          "description": "Income Tax Expense",
+          "account_class": "Expense",
+          "sub_class": "Tax Expense",
+          "financial_statement": "Income Statement",
+          "normal_balance": "Debit",
+          "status": "Active",
+          "department": "Tax",
+          "cost_center": "TX001"
+        }
+      ]
+    }
+  },
+  "all_accounts": [
+    {
+      "account_code": "101000",
+      "description": "Cash - Operating Account",
+      "account_class": "Asset",
+      "sub_class": "Cash and Equivalents",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "101100",
+      "description": "Cash - Payroll Account",
+      "account_class": "Asset",
+      "sub_class": "Cash and Equivalents",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "101200",
+      "description": "Petty Cash",
+      "account_class": "Asset",
+      "sub_class": "Cash and Equivalents",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "102000",
+      "description": "Short Term Investments",
+      "account_class": "Asset",
+      "sub_class": "Marketable Securities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "102100",
+      "description": "Money Market Securities",
+      "account_class": "Asset",
+      "sub_class": "Marketable Securities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "103000",
+      "description": "Accounts Receivable - Trade",
+      "account_class": "Asset",
+      "sub_class": "Receivables",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "103100",
+      "description": "Accounts Receivable - Other",
+      "account_class": "Asset",
+      "sub_class": "Receivables",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "103200",
+      "description": "Employee Receivables",
+      "account_class": "Asset",
+      "sub_class": "Receivables",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "104000",
+      "description": "Prepaid Insurance",
+      "account_class": "Asset",
+      "sub_class": "Prepaid Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "104100",
+      "description": "Prepaid Software Subscriptions",
+      "account_class": "Asset",
+      "sub_class": "Prepaid Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "IT",
+      "cost_center": "IT001"
+    },
+    {
+      "account_code": "104200",
+      "description": "Other Prepaid Expenses",
+      "account_class": "Asset",
+      "sub_class": "Prepaid Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "105000",
+      "description": "Merchandise Inventory",
+      "account_class": "Asset",
+      "sub_class": "Inventory",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Operations",
+      "cost_center": "OP001"
+    },
+    {
+      "account_code": "150000",
+      "description": "Computer Hardware",
+      "account_class": "Asset",
+      "sub_class": "Fixed Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "IT",
+      "cost_center": "IT001"
+    },
+    {
+      "account_code": "150100",
+      "description": "Office Equipment",
+      "account_class": "Asset",
+      "sub_class": "Fixed Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "150200",
+      "description": "Furniture and Fixtures",
+      "account_class": "Asset",
+      "sub_class": "Fixed Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "150300",
+      "description": "Building Improvements",
+      "account_class": "Asset",
+      "sub_class": "Fixed Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Facilities",
+      "cost_center": "FC001"
+    },
+    {
+      "account_code": "160000",
+      "description": "Accumulated Depreciation - Hardware",
+      "account_class": "Asset",
+      "sub_class": "Accumulated Depreciation",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "IT",
+      "cost_center": "IT001"
+    },
+    {
+      "account_code": "160100",
+      "description": "Accumulated Depreciation - Equipment",
+      "account_class": "Asset",
+      "sub_class": "Accumulated Depreciation",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "160200",
+      "description": "Accumulated Depreciation - Furniture",
+      "account_class": "Asset",
+      "sub_class": "Accumulated Depreciation",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "170000",
+      "description": "Software Assets",
+      "account_class": "Asset",
+      "sub_class": "Intangible Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "IT",
+      "cost_center": "IT001"
+    },
+    {
+      "account_code": "170100",
+      "description": "Intellectual Property",
+      "account_class": "Asset",
+      "sub_class": "Intangible Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Legal",
+      "cost_center": "LG001"
+    },
+    {
+      "account_code": "170200",
+      "description": "Goodwill",
+      "account_class": "Asset",
+      "sub_class": "Intangible Assets",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "201000",
+      "description": "Accounts Payable - Trade",
+      "account_class": "Liability",
+      "sub_class": "Payables",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Procurement",
+      "cost_center": "PR001"
+    },
+    {
+      "account_code": "201100",
+      "description": "Accounts Payable - Other",
+      "account_class": "Liability",
+      "sub_class": "Payables",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "202000",
+      "description": "Wages Payable",
+      "account_class": "Liability",
+      "sub_class": "Accrued Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "202100",
+      "description": "Benefits Payable",
+      "account_class": "Liability",
+      "sub_class": "Accrued Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "202200",
+      "description": "Professional Fees Payable",
+      "account_class": "Liability",
+      "sub_class": "Accrued Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "203000",
+      "description": "Credit Line Payable",
+      "account_class": "Liability",
+      "sub_class": "Short Term Debt",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "204000",
+      "description": "Customer Deposits",
+      "account_class": "Liability",
+      "sub_class": "Deferred Revenue",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "204100",
+      "description": "Unearned Revenue",
+      "account_class": "Liability",
+      "sub_class": "Deferred Revenue",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "205000",
+      "description": "Federal Tax Withholding",
+      "account_class": "Liability",
+      "sub_class": "Tax Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "205100",
+      "description": "State Tax Withholding",
+      "account_class": "Liability",
+      "sub_class": "Tax Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "205200",
+      "description": "FICA Tax Payable",
+      "account_class": "Liability",
+      "sub_class": "Tax Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "205300",
+      "description": "Income Tax Payable",
+      "account_class": "Liability",
+      "sub_class": "Tax Liabilities",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Tax",
+      "cost_center": "TX001"
+    },
+    {
+      "account_code": "250000",
+      "description": "Long Term Bank Loan",
+      "account_class": "Liability",
+      "sub_class": "Long Term Debt",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "250100",
+      "description": "Equipment Finance Agreement",
+      "account_class": "Liability",
+      "sub_class": "Long Term Debt",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "301000",
+      "description": "Capital Stock",
+      "account_class": "Equity",
+      "sub_class": "Paid-in Capital",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "302000",
+      "description": "Retained Earnings",
+      "account_class": "Equity",
+      "sub_class": "Retained Earnings",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "303000",
+      "description": "Additional Paid-in Capital",
+      "account_class": "Equity",
+      "sub_class": "Paid-in Capital",
+      "financial_statement": "Balance Sheet",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "401000",
+      "description": "Product Sales Revenue",
+      "account_class": "Revenue",
+      "sub_class": "Sales Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "401100",
+      "description": "Service Revenue",
+      "account_class": "Revenue",
+      "sub_class": "Sales Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "401200",
+      "description": "Consulting Revenue",
+      "account_class": "Revenue",
+      "sub_class": "Sales Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Consulting",
+      "cost_center": "CS001"
+    },
+    {
+      "account_code": "401300",
+      "description": "Recurring Revenue",
+      "account_class": "Revenue",
+      "sub_class": "Sales Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "402000",
+      "description": "Interest Revenue",
+      "account_class": "Revenue",
+      "sub_class": "Other Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "402100",
+      "description": "Investment Income",
+      "account_class": "Revenue",
+      "sub_class": "Other Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "402200",
+      "description": "Miscellaneous Revenue",
+      "account_class": "Revenue",
+      "sub_class": "Other Revenue",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Credit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "501000",
+      "description": "Material Costs",
+      "account_class": "Expense",
+      "sub_class": "Cost of Sales",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Operations",
+      "cost_center": "OP001"
+    },
+    {
+      "account_code": "501100",
+      "description": "Direct Labor Costs",
+      "account_class": "Expense",
+      "sub_class": "Cost of Sales",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Operations",
+      "cost_center": "OP001"
+    },
+    {
+      "account_code": "501200",
+      "description": "Overhead Allocation",
+      "account_class": "Expense",
+      "sub_class": "Cost of Sales",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Operations",
+      "cost_center": "OP001"
+    },
+    {
+      "account_code": "601000",
+      "description": "Executive Salaries",
+      "account_class": "Expense",
+      "sub_class": "Personnel Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Executive",
+      "cost_center": "EX001"
+    },
+    {
+      "account_code": "601100",
+      "description": "Administrative Salaries",
+      "account_class": "Expense",
+      "sub_class": "Personnel Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "601200",
+      "description": "Sales Salaries",
+      "account_class": "Expense",
+      "sub_class": "Personnel Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Sales",
+      "cost_center": "SL001"
+    },
+    {
+      "account_code": "601300",
+      "description": "Employee Benefits Cost",
+      "account_class": "Expense",
+      "sub_class": "Personnel Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "601400",
+      "description": "Payroll Tax Expense",
+      "account_class": "Expense",
+      "sub_class": "Personnel Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "602000",
+      "description": "Facility Rent",
+      "account_class": "Expense",
+      "sub_class": "Facility Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Facilities",
+      "cost_center": "FC001"
+    },
+    {
+      "account_code": "602100",
+      "description": "Utilities Expense",
+      "account_class": "Expense",
+      "sub_class": "Facility Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Facilities",
+      "cost_center": "FC001"
+    },
+    {
+      "account_code": "602200",
+      "description": "Office Supplies",
+      "account_class": "Expense",
+      "sub_class": "Administrative Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "602300",
+      "description": "Professional Fees",
+      "account_class": "Expense",
+      "sub_class": "Administrative Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "602400",
+      "description": "Legal Fees",
+      "account_class": "Expense",
+      "sub_class": "Administrative Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Legal",
+      "cost_center": "LG001"
+    },
+    {
+      "account_code": "602500",
+      "description": "Audit Fees",
+      "account_class": "Expense",
+      "sub_class": "Administrative Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Finance",
+      "cost_center": "FN001"
+    },
+    {
+      "account_code": "602600",
+      "description": "Insurance Premiums",
+      "account_class": "Expense",
+      "sub_class": "Administrative Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "603000",
+      "description": "Advertising Expense",
+      "account_class": "Expense",
+      "sub_class": "Marketing Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Marketing",
+      "cost_center": "MK001"
+    },
+    {
+      "account_code": "603100",
+      "description": "Software Subscriptions",
+      "account_class": "Expense",
+      "sub_class": "Technology Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "IT",
+      "cost_center": "IT001"
+    },
+    {
+      "account_code": "603200",
+      "description": "Communication Costs",
+      "account_class": "Expense",
+      "sub_class": "Technology Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "IT",
+      "cost_center": "IT001"
+    },
+    {
+      "account_code": "603300",
+      "description": "Travel Expenses",
+      "account_class": "Expense",
+      "sub_class": "Administrative Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Admin",
+      "cost_center": "AD001"
+    },
+    {
+      "account_code": "603400",
+      "description": "Training Expenses",
+      "account_class": "Expense",
+      "sub_class": "Personnel Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "HR",
+      "cost_center": "HR001"
+    },
+    {
+      "account_code": "604000",
+      "description": "Depreciation Expense",
+      "account_class": "Expense",
+      "sub_class": "Non-Cash Expenses",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Finance",
+      "cost_center": "FN001"
+    },
+    {
+      "account_code": "605000",
+      "description": "Interest Expense",
+      "account_class": "Expense",
+      "sub_class": "Financial Costs",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Treasury",
+      "cost_center": "TC001"
+    },
+    {
+      "account_code": "606000",
+      "description": "Income Tax Expense",
+      "account_class": "Expense",
+      "sub_class": "Tax Expense",
+      "financial_statement": "Income Statement",
+      "normal_balance": "Debit",
+      "status": "Active",
+      "department": "Tax",
+      "cost_center": "TX001"
+    }
+  ]
+}

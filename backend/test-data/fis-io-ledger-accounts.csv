@@ -1,0 +1,73 @@
+Account_Code,Account_Description,Account_Type,Account_Category,Balance_Sheet_Category,Income_Statement_Category,Active,Created_Date,Last_Modified
+1000,Cash and Cash Equivalents,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1010,Operating Cash Account,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1020,Payroll Cash Account,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1100,Short-term Investments,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1110,Money Market Funds,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1200,Accounts Receivable,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1210,Trade Receivables,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1220,Employee Advances,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1300,Prepaid Expenses,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1310,Prepaid Insurance,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1320,Prepaid Software Licenses,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1400,Inventory,Asset,Current Assets,Current Assets,,TRUE,2024-01-01,2024-09-01
+1500,Property Plant and Equipment,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1510,Computer Equipment,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1520,Office Furniture,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1530,Leasehold Improvements,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1600,Accumulated Depreciation,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1610,Accumulated Depreciation - Equipment,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1620,Accumulated Depreciation - Furniture,Asset,Fixed Assets,Fixed Assets,,TRUE,2024-01-01,2024-09-01
+1700,Intangible Assets,Asset,Intangible Assets,Intangible Assets,,TRUE,2024-01-01,2024-09-01
+1710,Software Development Costs,Asset,Intangible Assets,Intangible Assets,,TRUE,2024-01-01,2024-09-01
+1720,Patents and Trademarks,Asset,Intangible Assets,Intangible Assets,,TRUE,2024-01-01,2024-09-01
+2000,Accounts Payable,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2010,Trade Payables,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2020,Vendor Payables,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2100,Accrued Expenses,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2110,Accrued Salaries,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2120,Accrued Benefits,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2130,Accrued Professional Services,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2200,Short-term Debt,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2210,Line of Credit,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2300,Deferred Revenue,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2310,Unearned Service Revenue,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2400,Tax Liabilities,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2410,Federal Income Tax Payable,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2420,State Income Tax Payable,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2430,Payroll Tax Payable,Liability,Current Liabilities,,Current Liabilities,TRUE,2024-01-01,2024-09-01
+2500,Long-term Debt,Liability,Long-term Liabilities,,Long-term Liabilities,TRUE,2024-01-01,2024-09-01
+2510,Bank Loan - Long Term,Liability,Long-term Liabilities,,Long-term Liabilities,TRUE,2024-01-01,2024-09-01
+2520,Equipment Financing,Liability,Long-term Liabilities,,Long-term Liabilities,TRUE,2024-01-01,2024-09-01
+3000,Common Stock,Equity,Stockholders Equity,,Stockholders Equity,TRUE,2024-01-01,2024-09-01
+3100,Retained Earnings,Equity,Stockholders Equity,,Stockholders Equity,TRUE,2024-01-01,2024-09-01
+3200,Additional Paid-in Capital,Equity,Stockholders Equity,,Stockholders Equity,TRUE,2024-01-01,2024-09-01
+4000,Revenue,Revenue,Operating Revenue,Revenue,Operating Revenue,TRUE,2024-01-01,2024-09-01
+4010,Service Revenue,Revenue,Operating Revenue,Revenue,Operating Revenue,TRUE,2024-01-01,2024-09-01
+4020,Product Sales,Revenue,Operating Revenue,Revenue,Operating Revenue,TRUE,2024-01-01,2024-09-01
+4030,Subscription Revenue,Revenue,Operating Revenue,Revenue,Operating Revenue,TRUE,2024-01-01,2024-09-01
+4100,Other Income,Revenue,Non-Operating Revenue,Revenue,Non-Operating Revenue,TRUE,2024-01-01,2024-09-01
+4110,Interest Income,Revenue,Non-Operating Revenue,Revenue,Non-Operating Revenue,TRUE,2024-01-01,2024-09-01
+4120,Investment Gains,Revenue,Non-Operating Revenue,Revenue,Non-Operating Revenue,TRUE,2024-01-01,2024-09-01
+5000,Cost of Goods Sold,Expense,Direct Costs,Expense,Cost of Goods Sold,TRUE,2024-01-01,2024-09-01
+5010,Direct Materials,Expense,Direct Costs,Expense,Cost of Goods Sold,TRUE,2024-01-01,2024-09-01
+5020,Direct Labor,Expense,Direct Costs,Expense,Cost of Goods Sold,TRUE,2024-01-01,2024-09-01
+5030,Manufacturing Overhead,Expense,Direct Costs,Expense,Cost of Goods Sold,TRUE,2024-01-01,2024-09-01
+6000,Operating Expenses,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6010,Salaries and Wages,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6020,Employee Benefits,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6030,Payroll Taxes,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6040,Office Rent,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6050,Utilities,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6060,Office Supplies,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6070,Professional Services,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6080,Legal and Accounting,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6090,Insurance,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6100,Marketing and Advertising,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6110,Software Licenses,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6120,Telecommunications,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6130,Travel and Entertainment,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6140,Training and Development,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6200,Depreciation Expense,Expense,Operating Expenses,Expense,Operating Expenses,TRUE,2024-01-01,2024-09-01
+6300,Interest Expense,Expense,Non-Operating Expenses,Expense,Non-Operating Expenses,TRUE,2024-01-01,2024-09-01
+6400,Tax Expense,Expense,Tax Expenses,Expense,Tax Expenses,TRUE,2024-01-01,2024-09-01
