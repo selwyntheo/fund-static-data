@@ -22,12 +22,35 @@ interface ClaudeAPIHook {
 }
 
 const BACKEND_API_URL = 'http://localhost:8000';
+const CHAT_STORAGE_KEY = 'claude-chat-history';
+const CONVERSATION_STORAGE_KEY = 'claude-conversation-history';
 
 export const useClaudeAPI = (): ClaudeAPIHook => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => {
+    // Load chat history from localStorage on initialization
+    try {
+      const savedMessages = localStorage.getItem(CHAT_STORAGE_KEY);
+      return savedMessages ? JSON.parse(savedMessages) : [];
+    } catch (error) {
+      console.warn('Failed to load chat history:', error);
+      return [];
+    }
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<APIError | null>(null);
   const conversationRef = useRef<Array<{ role: 'user' | 'assistant'; content: string }>>([]);
+  
+  // Load conversation history from localStorage on initialization
+  if (conversationRef.current.length === 0) {
+    try {
+      const savedConversation = localStorage.getItem(CONVERSATION_STORAGE_KEY);
+      if (savedConversation) {
+        conversationRef.current = JSON.parse(savedConversation);
+      }
+    } catch (error) {
+      console.warn('Failed to load conversation history:', error);
+    }
+  }
   const messageCounterRef = useRef(0);
 
   const clearError = useCallback(() => {
@@ -37,22 +60,46 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
   const clearMessages = useCallback(() => {
     setMessages([]);
     conversationRef.current = [];
+    // Clear chat history from localStorage
+    localStorage.removeItem(CHAT_STORAGE_KEY);
+    localStorage.removeItem(CONVERSATION_STORAGE_KEY);
+  }, []);
+
+  // Helper function to save chat history
+  const saveChatHistory = useCallback((newMessages: ChatMessage[]) => {
+    try {
+      localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(newMessages));
+    } catch (error) {
+      console.warn('Failed to save chat history:', error);
+    }
+  }, []);
+
+  // Helper function to save conversation history
+  const saveConversationHistory = useCallback((conversation: Array<{ role: 'user' | 'assistant'; content: string }>) => {
+    try {
+      localStorage.setItem(CONVERSATION_STORAGE_KEY, JSON.stringify(conversation));
+    } catch (error) {
+      console.warn('Failed to save conversation history:', error);
+    }
   }, []);
 
 
 
   const callClaudeAPI = async (
     userMessage: string, 
-    context?: MappingContext
+    context?: MappingContext,
+    isMappingRequest: boolean = false
   ): Promise<string> => {
     // Add user message to conversation history
     conversationRef.current.push({ role: 'user', content: userMessage });
+    saveConversationHistory(conversationRef.current);
 
     const requestData = {
       message: userMessage,
       context: context,
       conversation: [...conversationRef.current],
       session_id: context?.sessionId, // Include session ID if available
+      is_mapping_request: isMappingRequest, // Flag to differentiate chat vs mapping
     };
 
     // Debug logging
@@ -75,6 +122,7 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
       
       // Add assistant response to conversation history
       conversationRef.current.push({ role: 'assistant', content });
+      saveConversationHistory(conversationRef.current);
 
       return content;
     } catch (err: any) {
@@ -103,14 +151,22 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
       timestamp: new Date(),
     };
     
-    setMessages(prev => [...prev, newMessage]);
+    setMessages(prev => {
+      const updated = [...prev, newMessage];
+      saveChatHistory(updated);
+      return updated;
+    });
     return newMessage;
   };
 
   const updateMessage = (id: string, updates: Partial<ChatMessage>) => {
-    setMessages(prev => prev.map(msg => 
-      msg.id === id ? { ...msg, ...updates } : msg
-    ));
+    setMessages(prev => {
+      const updated = prev.map(msg => 
+        msg.id === id ? { ...msg, ...updates } : msg
+      );
+      saveChatHistory(updated);
+      return updated;
+    });
   };
 
   const sendMessage = useCallback(async (
@@ -173,13 +229,28 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
         
-        // Pattern: "1. SOURCE_CODE -> TARGET_CODE (confidence%)"
-        const mappingMatch = line.match(/^\d+\.\s*(.+?)\s*->\s*(.+?)\s*\((\d+)%?\)/);
-        if (mappingMatch) {
-          const [, source, target, confidence] = mappingMatch;
-          const sourceCode = source.trim();
-          const targetCode = target.trim();
-          const confidenceScore = parseInt(confidence) || 70;
+        // Pattern with descriptions: "6400 -> 60500 (100%) # Tax Expense -> Income Tax Expense"
+        let sourceCode = '', targetCode = '', confidenceScore = 70, targetDescription = '';
+        let descriptionMatch = line.match(/^(\d+)\s*->\s*(\d+)\s*\((\d+)%?\)\s*#\s*.*?\s*->\s*(.+)$/);
+        if (descriptionMatch) {
+          const [, source, target, confidence, targetDesc] = descriptionMatch;
+          sourceCode = source.trim();
+          targetCode = target.trim();
+          confidenceScore = parseInt(confidence) || 70;
+          targetDescription = targetDesc.trim();
+          console.log('🎯 Found mapping with description:', { sourceCode, targetCode, confidenceScore, targetDescription, line: line.trim() });
+        } else {
+          // Pattern: "1. SOURCE_CODE -> TARGET_CODE (confidence%)"
+          const mappingMatch = line.match(/^\d+\.\s*(.+?)\s*->\s*(.+?)\s*\((\d+)%?\)/);
+          if (mappingMatch) {
+            const [, source, target, confidence] = mappingMatch;
+            sourceCode = source.trim();
+            targetCode = target.trim();
+            confidenceScore = parseInt(confidence) || 70;
+          }
+        }
+        
+        if (sourceCode && targetCode) {
           
           // Find the source account from uploaded data
           const sourceAcc = sourceAccounts.find(acc => 
@@ -203,7 +274,7 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
               sourceType: sourceAcc.sourceType || sourceAcc.account_type,
               sourceCategory: sourceAcc.sourceCategory || sourceAcc.account_category,
               targetCode: targetCode,
-              targetDescription: `Claude suggested mapping`,
+              targetDescription: targetDescription || `Claude suggested mapping`,
               targetType: '',
               confidence: confidenceScore,
               matchType: confidenceScore > 85 ? 'Exact' : confidenceScore > 70 ? 'Semantic' : 'Manual' as const,
@@ -226,7 +297,7 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
               sourceType: '',
               sourceCategory: '',
               targetCode: targetCode,
-              targetDescription: `Claude suggested mapping`,
+              targetDescription: targetDescription || `Claude suggested mapping`,
               targetType: '',
               confidence: confidenceScore,
               matchType: 'Manual' as const,
@@ -276,7 +347,7 @@ export const useClaudeAPI = (): ClaudeAPIHook => {
     setError(null);
 
     try {
-      const response = await callClaudeAPI(message, context);
+      const response = await callClaudeAPI(message, context, true); // true = is mapping request
       
       // Update assistant message with response
       updateMessage(assistantMessage.id, {

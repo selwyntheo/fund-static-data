@@ -1,10 +1,11 @@
-import React, { useState, useRef, KeyboardEvent } from 'react';
+import React, { useState, useRef, KeyboardEvent, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Send, Upload, Paperclip, X } from 'lucide-react';
 
 interface InputAreaProps {
-  onSendMessage: (message: string) => void;
-  onFileUpload: (files: File[]) => void;
+  onSendMessage: (message: string, sessionId?: string) => void;
+  onFileUpload: (files: File[]) => Promise<string | null>;
+  onShowIntelligentRecommendation?: (fileName: string, files: File[]) => void;
   isLoading?: boolean;
   disabled?: boolean;
 }
@@ -12,22 +13,88 @@ interface InputAreaProps {
 export const InputArea: React.FC<InputAreaProps> = ({
   onSendMessage,
   onFileUpload,
+  onShowIntelligentRecommendation,
   isLoading = false,
   disabled = false,
 }) => {
   const [message, setMessage] = useState('');
   const [attachedFiles, setAttachedFiles] = useState<File[]>([]);
+
+  // Debug attachedFiles changes and trigger intelligent recommendation
+  useEffect(() => {
+    console.log('[InputArea] attachedFiles updated:', attachedFiles);
+    console.log('[InputArea] hasFiles for button:', attachedFiles.length > 0);
+    
+    const canSend = (message.trim() || attachedFiles.length > 0) && !disabled && !isLoading;
+    console.log('[InputArea] Send button state:', {
+      hasMessage: !!message.trim(),
+      hasFiles: attachedFiles.length > 0,
+      disabled,
+      isLoading,
+      canSend
+    });
+
+    // Trigger intelligent recommendation when files are attached
+    if (attachedFiles.length > 0 && onShowIntelligentRecommendation) {
+      const fileName = attachedFiles[0]?.name || 'uploaded file';
+      console.log('[InputArea] Triggering intelligent recommendation for:', fileName);
+      onShowIntelligentRecommendation(fileName, attachedFiles);
+    }
+  }, [attachedFiles, message, disabled, isLoading, onShowIntelligentRecommendation]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSend = () => {
-    if (message.trim() && !disabled && !isLoading) {
-      onSendMessage(message.trim());
+  const handleSend = async () => {
+    console.log('🚀 InputArea.handleSend called', { 
+      hasMessage: !!message.trim(), 
+      attachedFilesCount: attachedFiles.length,
+      disabled, 
+      isLoading 
+    });
+    
+    // Check if we can send (either message or files)
+    const canSend = (message.trim() || attachedFiles.length > 0) && !disabled && !isLoading;
+    console.log('🔍 Can send check:', { canSend, messageLength: message.trim().length, filesCount: attachedFiles.length });
+    
+    if (canSend) {
+      const messageToSend = message.trim();
       setMessage('');
       
-      // Handle file uploads if any
+      // Handle file uploads FIRST if any, then send message
       if (attachedFiles.length > 0) {
-        onFileUpload(attachedFiles);
-        setAttachedFiles([]);
+        try {
+          console.log('🔄 Processing files before sending message...', attachedFiles.map(f => f.name));
+          
+          // Create file attachment info for chat history
+          const fileInfo = attachedFiles.map(f => ({
+            name: f.name,
+            size: f.size,
+            type: f.type
+          }));
+          
+          // Upload files and wait for processing to complete
+          const sessionId = await onFileUpload(attachedFiles);
+          
+          console.log('✅ Files processed, now sending message with session ID:', sessionId);
+          
+          // Send message with file attachment info included
+          const attachmentText = '\n\n📎 Attachments:\n' + 
+            fileInfo.map(f => `• ${f.name} (${(f.size / 1024).toFixed(1)}KB)`).join('\n');
+          const messageWithFiles = messageToSend ? messageToSend + attachmentText : attachmentText.trim();
+          
+          onSendMessage(messageWithFiles, sessionId || undefined);
+          setAttachedFiles([]); // Clear files after successful processing
+        } catch (error) {
+          console.error('❌ File upload failed:', error);
+          setAttachedFiles([]); // Clear files even on error
+          // Send message anyway if file upload fails (only if there was a message)
+          if (messageToSend) {
+            onSendMessage(messageToSend);
+          }
+        }
+      } else {
+        console.log('📤 No files attached, sending message immediately');
+        // No files attached, send message immediately
+        onSendMessage(messageToSend);
       }
       
       // Reset textarea height
@@ -61,23 +128,39 @@ export const InputArea: React.FC<InputAreaProps> = ({
     },
     multiple: true,
     onDrop: (files) => {
-      setAttachedFiles(prev => [...prev, ...files]);
+      console.log('[InputArea] Files dropped:', files);
+      setAttachedFiles(prev => {
+        const newFiles = [...prev, ...files];
+        console.log('[InputArea] Updated attachedFiles:', newFiles);
+        return newFiles;
+      });
     },
     noClick: true,
   });
 
   const removeFile = (index: number) => {
-    setAttachedFiles(prev => prev.filter((_, i) => i !== index));
+    console.log('[InputArea] Removing file at index:', index);
+    setAttachedFiles(prev => {
+      const newFiles = prev.filter((_, i) => i !== index);
+      console.log('[InputArea] Files after removal:', newFiles.map(f => f.name));
+      return newFiles;
+    });
   };
 
   const openFileDialog = () => {
+    console.log('[InputArea] Opening file dialog');
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = '.xlsx,.xls,.csv';
     input.multiple = true;
     input.onchange = (e) => {
       const files = Array.from((e.target as HTMLInputElement).files || []);
-      setAttachedFiles(prev => [...prev, ...files]);
+      console.log('[InputArea] Files selected via dialog:', files);
+      setAttachedFiles(prev => {
+        const newFiles = [...prev, ...files];
+        console.log('[InputArea] Updated attachedFiles via dialog:', newFiles);
+        return newFiles;
+      });
     };
     input.click();
   };
@@ -86,8 +169,8 @@ export const InputArea: React.FC<InputAreaProps> = ({
     <div className="border-t bg-white">
       {/* File Attachments */}
       {attachedFiles.length > 0 && (
-        <div className="p-3 border-b bg-gray-50">
-          <div className="flex flex-wrap gap-2">
+        <div className="p-3 border-b bg-blue-50">
+          <div className="flex flex-wrap gap-2 mb-2">
             {attachedFiles.map((file, index) => (
               <div
                 key={index}
@@ -103,6 +186,9 @@ export const InputArea: React.FC<InputAreaProps> = ({
                 </button>
               </div>
             ))}
+          </div>
+          <div className="text-sm text-blue-700 font-medium">
+            📎 Files ready - Use the smart suggestion or send a message to process
           </div>
         </div>
       )}
@@ -153,9 +239,9 @@ export const InputArea: React.FC<InputAreaProps> = ({
             {/* Send Button */}
             <button
               onClick={handleSend}
-              disabled={!message.trim() || disabled || isLoading}
+              disabled={(!message.trim() && attachedFiles.length === 0) || disabled || isLoading}
               className={`flex-shrink-0 p-2 rounded-lg transition-colors ${
-                message.trim() && !disabled && !isLoading
+                (message.trim() || attachedFiles.length > 0) && !disabled && !isLoading
                   ? 'bg-blue-500 text-white hover:bg-blue-600'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }`}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload Test</title>
+</head>
+<body>
+    <h1>File Upload Test</h1>
+    <input type="file" id="fileInput" multiple accept=".xlsx,.xls,.csv">
+    <button onclick="testUpload()">Test Upload</button>
+    <div id="output"></div>
+
+    <script>
+        function testUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const files = Array.from(fileInput.files);
+            
+            console.log('Files selected:', files.map(f => ({ name: f.name, size: f.size })));
+            
+            if (files.length === 0) {
+                console.log('No files selected');
+                return;
+            }
+
+            // Test upload to backend
+            files.forEach(async (file, index) => {
+                console.log(`Uploading file ${index + 1}: ${file.name}`);
+                
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const response = await fetch('http://localhost:8000/upload-accounts', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    console.log(`Response status for ${file.name}:`, response.status);
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log(`Success for ${file.name}:`, result);
+                        document.getElementById('output').innerHTML += `<p>✅ ${file.name}: ${result.accounts.length} accounts</p>`;
+                    } else {
+                        const error = await response.json();
+                        console.error(`Error for ${file.name}:`, error);
+                        document.getElementById('output').innerHTML += `<p>❌ ${file.name}: ${error.detail}</p>`;
+                    }
+                } catch (error) {
+                    console.error(`Network error for ${file.name}:`, error);
+                    document.getElementById('output').innerHTML += `<p>❌ ${file.name}: Network error</p>`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -26,13 +26,20 @@ export const useFileProcessor = (): UseFileProcessorResult => {
   };
 
   const processFiles = useCallback(async (files: File[]): Promise<MappingRow[]> => {
-    if (files.length === 0) return [];
+    console.log('[useFileProcessor] processFiles called with:', files.map(f => ({ name: f.name, size: f.size })));
+    
+    if (files.length === 0) {
+      console.log('[useFileProcessor] No files provided, returning empty array');
+      return [];
+    }
 
+    console.log('[useFileProcessor] Starting file processing');
     setIsProcessing(true);
     setError(null);
     
     try {
       const allMappings: MappingRow[] = [];
+      console.log('[useFileProcessor] Initialized allMappings array');
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -51,17 +58,21 @@ export const useFileProcessor = (): UseFileProcessorResult => {
         formData.append('file', file);
 
         // Upload to backend
+        console.log(`[useFileProcessor] Uploading file ${fileNumber}/${totalFiles}: ${file.name}`);
         const response = await fetch('http://localhost:8000/upload-accounts', {
           method: 'POST',
           body: formData,
         });
 
+        console.log(`[useFileProcessor] Upload response status: ${response.status}`);
         if (!response.ok) {
           const errorData = await response.json();
+          console.error(`[useFileProcessor] Upload failed for ${file.name}:`, errorData);
           throw new Error(errorData.detail || `Upload failed for ${file.name}`);
         }
 
         const result = await response.json();
+        console.log(`[useFileProcessor] Upload successful for ${file.name}, result:`, result);
 
         // Processing phase
         updateProgress(

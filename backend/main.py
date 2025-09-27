@@ -248,22 +248,23 @@ Consider account functionality, business purpose, and financial statement classi
         file_data = uploaded_files_data[session_id]
         accounts_data = file_data['accounts']
         
-        # Create a comprehensive prompt for data analysis
-        analysis_prompt = f"""Based on the uploaded file '{file_data['filename']}' with {file_data['account_count']} accounts, please analyze the data and respond to: {user_query}
+        # Create a focused prompt for mapping analysis
+        analysis_prompt = f"""MAPPING REQUEST: {user_query}
 
-ACCOUNT DATA STRUCTURE:
-Columns: {', '.join(file_data['columns'])}
+SOURCE FILE: {file_data['filename']} ({file_data['account_count']} accounts)
+COLUMNS: {', '.join(file_data['columns'])}
 
-SAMPLE ACCOUNTS (first 10):
-{json.dumps(accounts_data[:10], indent=2)}
+FIS IO ACCOUNT DATA:
+{json.dumps(accounts_data, indent=2)}
 
-Please provide a comprehensive analysis including:
-1. Data quality assessment
-2. Account categorization insights  
-3. Potential mapping challenges
-4. Specific recommendations based on the user's query
-
-If the user is asking for mappings, provide detailed mapping suggestions with confidence levels."""
+INSTRUCTIONS:
+- Provide ONLY structured mapping results in the required format
+- Map each FIS IO account to the most appropriate Eagle account
+- Include confidence percentage for each mapping
+- Use the exact format: SOURCE_CODE -> TARGET_CODE (confidence%) # Source Description -> Target Description
+- Add brief account descriptions as comments for readability
+- Do not include explanatory text unless specifically requested
+- Focus on accuracy and completeness of mappings"""
 
         messages = [{"role": "user", "content": analysis_prompt}]
         
@@ -297,48 +298,69 @@ async def chat_with_claude(request: Dict[str, Any]):
         context = request.get('context', {})
         conversation = request.get('conversation', [])
         session_id = request.get('session_id')  # Get session ID for uploaded file context
+        is_mapping_request = request.get('is_mapping_request', False)  # Flag to differentiate chat vs mapping
         
         if not message.strip():
             raise HTTPException(status_code=400, detail="Message cannot be empty")
         
-        # Create system prompt based on context
-        system_prompt = """You are Claude, an AI assistant specialized in accounting cross-reference mapping between FIS IO ledger accounts and BNY Eagle accounting systems.
+        # Debug logging
+        logger.info(f"Chat request - is_mapping_request: {is_mapping_request}")
+        logger.info(f"Message preview: {message[:100]}...")
+        
+        # Create different system prompts based on request type
+        if is_mapping_request:
+            # Use mapping-focused system prompt
+            system_prompt = """You are Claude, an AI assistant specialized in accounting cross-reference mapping between FIS IO ledger accounts and BNY Eagle accounting systems.
+
+CRITICAL INSTRUCTION: When providing mapping suggestions, respond ONLY with structured mapping data in the exact required format. Do not include conversational responses, analysis, or commentary.
 
 MAPPING CONTEXT:
 You are specifically helping map accounts FROM FIS IO ledger TO BNY Eagle chart of accounts.
-
-KEY CAPABILITIES:
-- Analyze FIS IO source accounts and suggest appropriate BNY Eagle target mappings
-- Provide confidence scores (85-98% for direct matches, 70-84% for semantic matches)
-- Explain mapping logic based on account functions and industry standards
-- Follow established mapping patterns from historical data
-- Handle bulk operations and data validation
 
 TARGET SYSTEM: BNY Eagle Account Structure
 - Account Code Format: 6-digit numeric (e.g., 101000, 102100)
 - Hierarchy: Account Class > Sub Class > Individual Accounts
 - Main Account Classes: Asset, Liability, Equity, Revenue, Expense
 
-MAPPING GUIDELINES:
-1. DIRECT MATCHES (95-98% confidence): Exact functional equivalents
-   - Example: FIS "1010 Operating Cash" → Eagle "101000 Cash - Operating Account"
+CONFIDENCE SCORING:
+- 95-98%: Direct matches (exact functional equivalents)
+- 85-94%: Semantic matches (similar function, different naming)
+- 70-84%: Consolidated matches (multiple source accounts to one target)
 
-2. SEMANTIC MATCHES (85-94% confidence): Similar function, different naming
-   - Example: FIS "1020 Payroll Cash" → Eagle "101100 Cash - Payroll Account"
+REQUIRED RESPONSE FORMAT for mapping requests:
+Provide mappings ONLY in this exact format:
 
-3. CONSOLIDATED MATCHES (70-84% confidence): Multiple source accounts to one target
-   - Example: FIS "1300 Prepaid Expenses" → Eagle "104200 Other Prepaid Expenses"
-
-RESPONSE FORMAT for mapping requests:
-Always provide mappings in this exact format:
-1. [SOURCE_CODE] -> [TARGET_CODE] (confidence%)
-   Reasoning: [detailed explanation]
+SOURCE_CODE -> TARGET_CODE (confidence%) # Source Description -> Target Description
+SOURCE_CODE -> TARGET_CODE (confidence%) # Source Description -> Target Description
+SOURCE_CODE -> TARGET_CODE (confidence%) # Source Description -> Target Description
 
 Example:
-1. 1000 -> 101000 (95%)
-   Reasoning: Primary cash account mapping from FIS IO cash equivalents to Eagle operating cash account
+1000 -> 101000 (95%) # Cash and Cash Equivalents -> Cash - Operating Account
+1010 -> 101100 (89%) # Checking Account -> Cash - Checking Account
+1020 -> 101200 (92%) # Savings Account -> Cash - Savings Account
 
-Be conversational but professional, and always prioritize accuracy in accounting mappings."""
+DO NOT include:
+- Conversational greetings or closings
+- Detailed explanations or analysis sections
+- Recommendations or suggestions
+- Additional commentary about the mapping process
+- Data quality assessments
+- Implementation approaches
+
+Focus solely on providing accurate, structured mapping data that can be directly parsed and imported into the mapping grid."""
+        else:
+            # Use conversational system prompt for regular chat
+            system_prompt = """You are Claude, a helpful AI assistant specializing in accounting and finance. You can help with:
+
+- General questions about accounting principles and practices
+- Explanations of financial concepts and terminology  
+- Guidance on account mapping and cross-referencing between systems
+- Analysis and discussion of financial data and structures
+- Support for accounting system migrations and implementations
+
+You are knowledgeable about both FIS IO ledger systems and BNY Eagle accounting structures. When users ask general questions or need explanations, provide clear, conversational responses with helpful context and examples.
+
+Be conversational, informative, and supportive. Only provide structured mapping data when explicitly requested to perform account mappings."""
 
         # Add Eagle target account reference
         if eagle_account_reference:
@@ -357,18 +379,39 @@ Account Classes Available:
                     for account in accounts[:2]:  # Show first 2 accounts as examples
                         system_prompt += f"\n    • {account['account_code']}: {account['description']}"
 
-        # Add sample mapping patterns
+        # Add ground truth mapping patterns
         if ground_truth_mappings:
             system_prompt += f"""
 
-ESTABLISHED MAPPING PATTERNS (use as reference):
-"""
-            for mapping in ground_truth_mappings[:5]:  # Show first 5 mapping examples
+GROUND TRUTH MAPPING PATTERNS ({len(ground_truth_mappings)} verified patterns):
+These are authoritative, verified mappings that should guide your decisions.
+
+USAGE PRIORITY:
+1. EXACT MATCHES: If source account exactly matches ground truth, use that mapping (95-98% confidence)
+2. PATTERN MATCHES: If source account follows similar pattern, adapt the mapping (85-94% confidence)  
+3. ANALOGOUS MAPPINGS: Use as examples for similar account types (70-84% confidence)
+
+SAMPLE PATTERNS BY TYPE:"""
+            
+            # Group by mapping type
+            mapping_types = {}
+            for mapping in ground_truth_mappings:
+                mapping_type = mapping.get('Mapping_Type', 'Other')
+                if mapping_type not in mapping_types:
+                    mapping_types[mapping_type] = []
+                mapping_types[mapping_type].append(mapping)
+            
+            # Show examples from each type
+            for mapping_type, mappings in mapping_types.items():
                 system_prompt += f"""
-{mapping['Source_Account_Code']} -> {mapping['Target_Account_Code']} ({mapping['Mapping_Confidence']}%)
+
+{mapping_type.upper()} MAPPINGS:"""
+                for mapping in mappings[:3]:  # Show top 3 per type
+                    system_prompt += f"""
+  {mapping['Source_Account_Code']} -> {mapping['Target_Account_Code']} ({mapping['Mapping_Confidence']}%)
   Source: {mapping['Source_Description']}
   Target: {mapping['Target_Description']}
-  Type: {mapping['Mapping_Type']} - {mapping['Notes']}"""
+  Notes: {mapping['Notes']}"""
 
         # Add uploaded file context if available
         logger.info(f"Chat request - session_id: {session_id}")
@@ -629,6 +672,65 @@ async def run_evaluation(request: EvaluationRequest):
     except Exception as e:
         logger.error(f"Evaluation error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Evaluation failed: {str(e)}")
+
+@app.get("/ground-truth-mappings")
+async def get_ground_truth_mappings():
+    """Get all ground truth mappings for Claude to reference"""
+    try:
+        if not ground_truth_mappings:
+            return {"mappings": [], "total": 0, "message": "No ground truth mappings available"}
+        
+        return {
+            "mappings": ground_truth_mappings,
+            "total": len(ground_truth_mappings),
+            "message": f"Retrieved {len(ground_truth_mappings)} ground truth mapping patterns"
+        }
+    except Exception as e:
+        logger.error(f"Error retrieving ground truth mappings: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve ground truth mappings: {str(e)}")
+
+@app.post("/search-ground-truth")
+async def search_ground_truth_mappings(request: Dict[str, Any]):
+    """Search ground truth mappings by source account code or description"""
+    try:
+        search_term = request.get('search_term', '').lower()
+        mapping_type = request.get('mapping_type', '')  # Direct, Semantic, Consolidated
+        min_confidence = request.get('min_confidence', 0)
+        
+        if not search_term:
+            return {"mappings": [], "total": 0, "message": "Search term is required"}
+        
+        filtered_mappings = []
+        
+        for mapping in ground_truth_mappings:
+            # Search in source code or description
+            source_match = (
+                search_term in mapping.get('Source_Account_Code', '').lower() or
+                search_term in mapping.get('Source_Description', '').lower()
+            )
+            
+            # Filter by mapping type if specified
+            type_match = not mapping_type or mapping.get('Mapping_Type', '').lower() == mapping_type.lower()
+            
+            # Filter by confidence
+            confidence_match = mapping.get('Mapping_Confidence', 0) >= min_confidence
+            
+            if source_match and type_match and confidence_match:
+                filtered_mappings.append(mapping)
+        
+        return {
+            "mappings": filtered_mappings,
+            "total": len(filtered_mappings),
+            "search_term": search_term,
+            "filters_applied": {
+                "mapping_type": mapping_type,
+                "min_confidence": min_confidence
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Error searching ground truth mappings: {e}")
+        raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
 
 @app.get("/health")
 async def health_check():

@@ -76,14 +76,19 @@ def test_chat_context_inclusion(session_id):
         print(f"✅ Account count: {file_data['account_count']}")
         print(f"✅ Columns: {file_data['columns']}")
         
-        # Test system prompt enhancement
+        # Test system prompt enhancement with ALL account data
+        accounts_data = file_data['accounts']
+        detailed_accounts = accounts_data[:3]  # Show first 3 for testing
+        
         system_prompt_addition = f"""
 UPLOADED SOURCE FILE CONTEXT:
 - Filename: {file_data['filename']}
 - Total accounts: {file_data['account_count']}
 - Columns: {', '.join(file_data['columns'])}
 - Upload time: {file_data['upload_time']}
-- Sample data: {json.dumps(file_data['raw_data'][:3], indent=2)}
+
+COMPLETE FIS IO ACCOUNT DATA (sample):
+{json.dumps(detailed_accounts, indent=2)}
 """
         print(f"\n📝 System prompt would include:")
         print(system_prompt_addition)

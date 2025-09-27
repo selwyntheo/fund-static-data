@@ -2,22 +2,33 @@ import React, { useEffect, useRef } from 'react';
 import { ChatMessage } from '../../types';
 import { MessageBubble } from './MessageBubble';
 import { InputArea } from './InputArea';
+import { IntelligentRecommendation } from './IntelligentRecommendation';
 import { MessageSquare } from 'lucide-react';
 
 interface ChatInterfaceProps {
   messages: ChatMessage[];
-  onSendMessage: (message: string) => void;
-  onFileUpload: (files: File[]) => void;
+  onSendMessage: (message: string, sessionId?: string) => void;
+  onFileUpload: (files: File[]) => Promise<string | null>;
+  onShowIntelligentRecommendation?: (fileName: string, files: File[]) => void;
   isLoading?: boolean;
   disabled?: boolean;
+  showIntelligentRecommendation?: boolean;
+  uploadedFileName?: string;
+  onAcceptRecommendation?: () => void;
+  onDismissRecommendation?: () => void;
 }
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   messages,
   onSendMessage,
   onFileUpload,
+  onShowIntelligentRecommendation,
   isLoading = false,
   disabled = false,
+  showIntelligentRecommendation = false,
+  uploadedFileName = '',
+  onAcceptRecommendation,
+  onDismissRecommendation,
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -26,6 +37,15 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Debug intelligent recommendation props
+  useEffect(() => {
+    console.log('🎭 ChatInterface intelligent recommendation props:', {
+      showIntelligentRecommendation,
+      uploadedFileName,
+      hasCallbacks: !!(onAcceptRecommendation && onDismissRecommendation)
+    });
+  }, [showIntelligentRecommendation, uploadedFileName, onAcceptRecommendation, onDismissRecommendation]);
 
   return (
     <div className="flex flex-col h-full">
@@ -56,10 +76,23 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         )}
       </div>
 
+      {/* Intelligent Recommendation */}
+      {showIntelligentRecommendation && onAcceptRecommendation && onDismissRecommendation && (
+        <div className="px-4 pb-2">
+          <IntelligentRecommendation
+            fileName={uploadedFileName}
+            onAccept={onAcceptRecommendation}
+            onDismiss={onDismissRecommendation}
+            isLoading={isLoading}
+          />
+        </div>
+      )}
+
       {/* Input Area */}
       <InputArea
         onSendMessage={onSendMessage}
         onFileUpload={onFileUpload}
+        onShowIntelligentRecommendation={onShowIntelligentRecommendation}
         isLoading={isLoading}
         disabled={disabled}
       />

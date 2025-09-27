@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
-import { MappingRow, MappingChange, MappingContext, SerializableMappingChange } from '../types';
+import { useState, useCallback } from 'react';
+import { MappingRow, MappingChange, MappingContext } from '../types';
 import { 
   calculateMappingContext, 
   createMappingChange, 
@@ -20,6 +20,7 @@ interface UseMappingDataResult {
   updateMapping: (id: string, changes: Partial<MappingRow>) => void;
   deleteMapping: (id: string) => void;
   bulkUpdateMappings: (ids: string[], changes: Partial<MappingRow>) => void;
+  applySuggestions: (suggestions: MappingRow[]) => void;
   clearMappings: () => void;
   
   // Filtering and searching
@@ -43,9 +44,7 @@ interface UseMappingDataResult {
   lastSaved: Date | null;
 }
 
-const STORAGE_KEY = 'claude-mapping-data';
-const CHANGES_STORAGE_KEY = 'claude-mapping-changes';
-const AUTO_SAVE_DELAY = 2000; // 2 seconds
+// Mapping data is now session-only - no localStorage persistence
 
 export const useMappingData = (): UseMappingDataResult => {
   // Core data
@@ -59,67 +58,15 @@ export const useMappingData = (): UseMappingDataResult => {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [confidenceFilter, setConfidenceFilter] = useState({ min: 0, max: 100 });
   
-  // Auto-save state
+  // Session state (no persistence)
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const [lastSaved, setLastSaved] = useState<Date | null>(null);
-  const [autoSaveTimeout, setAutoSaveTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [lastSaved] = useState<Date | null>(null); // Always null since no saving
 
-  // Load data from localStorage on mount
-  useEffect(() => {
-    try {
-      const savedMappings = localStorage.getItem(STORAGE_KEY);
-      const savedChanges = localStorage.getItem(CHANGES_STORAGE_KEY);
-      
-      if (savedMappings) {
-        const parsedMappings = JSON.parse(savedMappings);
-        // Convert date strings back to Date objects
-        const mappingsWithDates = parsedMappings.map((mapping: any) => ({
-          ...mapping,
-          lastModified: new Date(mapping.lastModified)
-        }));
-        setMappings(mappingsWithDates);
-      }
-      
-      if (savedChanges) {
-        const parsedChanges = JSON.parse(savedChanges);
-        const changesWithDates = parsedChanges.map((change: any) => ({
-          ...change,
-          timestamp: new Date(change.timestamp)
-        }));
-        setRecentChanges(changesWithDates);
-      }
-    } catch (error) {
-      console.warn('Failed to load saved mapping data:', error);
-    }
-  }, []);
+  // Mapping data is no longer persisted - only exists during session
 
 
 
-  // Trigger auto-save when data changes
-  useEffect(() => {
-    if (hasUnsavedChanges) {
-      if (autoSaveTimeout) {
-        clearTimeout(autoSaveTimeout);
-      }
-      
-      const timeout = setTimeout(() => {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(mappings));
-          localStorage.setItem(CHANGES_STORAGE_KEY, JSON.stringify(recentChanges));
-          setHasUnsavedChanges(false);
-          setLastSaved(new Date());
-        } catch (error) {
-          console.error('Failed to auto-save mapping data:', error);
-        }
-      }, AUTO_SAVE_DELAY);
-      
-      setAutoSaveTimeout(timeout);
-      
-      return () => {
-        if (timeout) clearTimeout(timeout);
-      };
-    }
-  }, [mappings, recentChanges, hasUnsavedChanges]);
+  // Auto-save removed - mapping data only exists during session
 
   // Add change to recent changes (keep last 50)
   const addChange = useCallback((change: MappingChange) => {
@@ -132,7 +79,12 @@ export const useMappingData = (): UseMappingDataResult => {
 
   // Data operations
   const addMappings = useCallback((newMappings: MappingRow[]) => {
-    setMappings(prev => [...prev, ...newMappings]);
+    console.log(`🎯 Adding ${newMappings.length} new mappings to grid`);
+    setMappings(prev => {
+      const updated = [...prev, ...newMappings];
+      console.log(`📊 Total mappings: ${updated.length}`);
+      return updated;
+    });
     setHasUnsavedChanges(true);
   }, []);
 
@@ -182,6 +134,52 @@ export const useMappingData = (): UseMappingDataResult => {
     ids.forEach(id => updateMapping(id, changes));
   }, [updateMapping]);
 
+  const applySuggestions = useCallback((suggestions: MappingRow[]) => {
+    console.log(`🎯 Applying ${suggestions.length} mapping suggestions to existing rows`);
+    console.log('🔍 Current mappings state:', {
+      totalMappings: mappings.length,
+      statuses: mappings.map(m => ({ id: m.id, sourceCode: m.sourceCode, status: m.status })),
+      unmappedCount: mappings.filter(m => m.status === 'unmapped' || m.status === 'pending').length
+    });
+    
+    console.log('📋 Suggestions to apply:', suggestions.map(s => ({ 
+      sourceCode: s.sourceCode, 
+      targetCode: s.targetCode, 
+      confidence: s.confidence 
+    })));
+    
+    suggestions.forEach(suggestion => {
+      // Find existing row by sourceCode
+      const existingRow = mappings.find(row => 
+        row.sourceCode === suggestion.sourceCode && 
+        (row.status === 'unmapped' || row.status === 'pending')
+      );
+      
+      if (existingRow) {
+        console.log(`📝 Updating existing row ${existingRow.id} with suggestion:`, {
+          sourceCode: suggestion.sourceCode,
+          targetCode: suggestion.targetCode,
+          confidence: suggestion.confidence
+        });
+        
+        updateMapping(existingRow.id, {
+          targetCode: suggestion.targetCode,
+          targetDescription: suggestion.targetDescription,
+          targetType: suggestion.targetType,
+          confidence: suggestion.confidence,
+          matchType: suggestion.matchType,
+          status: 'mapped',
+          notes: `${existingRow.notes ? existingRow.notes + '; ' : ''}Claude AI suggestion`,
+          lastModified: new Date()
+        });
+      } else {
+        console.log(`❌ No existing unmapped row found for sourceCode: ${suggestion.sourceCode}`);
+        console.log('🔍 Available source codes in mappings:', mappings.map(m => m.sourceCode));
+        console.log('🔍 Looking for sourceCode:', suggestion.sourceCode);
+      }
+    });
+  }, [mappings, updateMapping]);
+
   const clearMappings = useCallback(() => {
     setMappings([]);
     setRecentChanges([]);
@@ -218,6 +216,8 @@ export const useMappingData = (): UseMappingDataResult => {
     // Apply sorting
     filtered = sortMappings(filtered, sortField, sortDirection);
     
+    console.log(`🎯 Filtered ${mappings.length} mappings down to ${filtered.length} for display`);
+    
     return filtered;
   }, [mappings, statusFilter, searchTerm, confidenceFilter, sortField, sortDirection]);
 
@@ -227,6 +227,14 @@ export const useMappingData = (): UseMappingDataResult => {
     
     // Extract session_id from any mapping metadata
     const sessionId = mappings.find(m => m.metadata?.sessionId)?.metadata?.sessionId;
+    
+    // Debug logging
+    console.log('🔍 useMappingData context building:', {
+      mappingsCount: mappings.length,
+      sessionId: sessionId,
+      firstMapping: mappings[0],
+      hasMappingsWithSessionId: mappings.some(m => m.metadata?.sessionId)
+    });
     
     // Convert dates to strings for JSON serialization
     const serializableRecentChanges = recentChanges.slice(0, 10).map(change => ({
@@ -254,6 +262,7 @@ export const useMappingData = (): UseMappingDataResult => {
     updateMapping,
     deleteMapping,
     bulkUpdateMappings,
+    applySuggestions,
     clearMappings,
     
     // Filtering and searching
